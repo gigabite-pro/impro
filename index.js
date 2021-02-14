@@ -38,17 +38,20 @@ app.post('/upload-info', upload.array('files'), (req, res) => {
     var bio = req.body.bio
     var backlink = req.body.backlink
 
-    User.findOne({backlink: backlink})
+    if(!name || !bio || !backlink){
+        errors.push({msg: 'Please fill in all the fields'})
+        res.render('index', {errors,name,bio,backlink})
+    }else{
+        User.findOne({backlink: backlink})
         .then(user => {
             if(user){
                 errors.push({msg: 'Backlink already taken'})
                 res.render('index', {errors,name,bio})
             }else{
                 var fileinfo = req.files
-
-                if(!name || !bio || !backlink || fileinfo.length == 0){
-                    errors.push({msg: 'Please fill in all the fields'})
-                    res.render('index', {errors})
+                if(fileinfo.length == 0){
+                    errors.push({msg: 'Please upload a profile picture'})
+                    res.render('index', {errors,name,bio,backlink})
                 }else{
                     for(let i=0; i < fileinfo.length; i++){
                         const buffer = Buffer.from(fileinfo[i].buffer);
@@ -75,6 +78,7 @@ app.post('/upload-info', upload.array('files'), (req, res) => {
                             console.log(status);
                         });
                     }
+                    errors.length = 0;
                     setTimeout(() => {
                         if(status == 400){
                             res.status(400).send('Some error occurred')
@@ -87,11 +91,10 @@ app.post('/upload-info', upload.array('files'), (req, res) => {
                         }
                     }, fileinfo.length*5000);
                 }
-
-                
         }
     })     
-    .catch((err)=> console.log(err)) 
+    .catch((err)=> console.log(err))    
+    }
 })
 
 app.post('/profile', upload.array('files'), (req,res)=>{
