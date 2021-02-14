@@ -96,7 +96,13 @@ app.post('/profile', upload.array('files'), (req,res)=>{
     console.log(name,bio,pfp,backlink)
     var image_link = []
     var fileinfo = req.files
-    if(fileinfo.length > 5){
+    if(fileinfo.length == 0){
+        errors.push({msg: 'No files selected'})
+        res.render('work', {
+            errors
+        })
+    }
+    else if(fileinfo.length > 5){
         errors.push({msg: 'File limit exceeded'})
         res.render('work', {
             errors
