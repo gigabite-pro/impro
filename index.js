@@ -140,7 +140,7 @@ app.post('/profile', upload.array('files'), (req,res)=>{
                 newUser.save();
                 res.redirect(`/${backlink}`)
             }
-        }, fileinfo.length*3000);
+        }, fileinfo.length*2000);
     }
     
 })
