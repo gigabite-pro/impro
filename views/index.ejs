@@ -67,7 +67,8 @@
             id="name" 
             name="name" 
             placeholder="Full Name" 
-            value="<%= typeof name != 'undefined' ? name : '' %>">
+            value="<%= typeof name != 'undefined' ? name : '' %>"
+            required>
 
           <textarea type="text" 
             rows="3" 
@@ -76,17 +77,19 @@
             placeholder="Bio" 
             name="bio"
             value = "<%= typeof bio != 'undefined' ? bio : '' %>"
+            required
             ></textarea>
 
           <input type="text" 
             class="form-control mb-2" 
             id="backlink" 
             name="backlink" 
-            placeholder="Backlink (impro.gq/{backlink})">
+            placeholder="Backlink (impro.gq/{backlink})"
+            required>
 
           <div class="mb-1">
             <label for="pfp" class="form-label">Profile Picture (Make sure the image is squared)</label>
-            <input type="file" id='pfp' name='files' class="form-control mb-3">
+            <input type="file" id='pfp' name='files' class="form-control mb-3" required>
           </div>
           <div class="button text-center">
             <button type="submit" class="uploadbtn btn-light btn">Upload</button>
