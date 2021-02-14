@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <title>Profile | <%= name %></title>
+    <style>
+        body{
+            background-color: rgb(31, 30, 30);
+            font-family: 'Lexend Deca', sans-serif;
+        }
+        .container{
+            margin-top: 3rem;
+        }
+        h1{
+            color: white;
+            font-weight: bold;
+        }
+        h3{
+            color: white;
+            font-weight: bold;
+        }
+        .img{
+            border-radius: 50%;
+        }
+        .large_pic{
+            width: 70rem;
+            height: 39.9rem;
+        }
+        .modal-content{
+            width: 70rem;
+            height: 39.38rem;
+        }
+        .modal-body{
+            padding: 0%;
+        }
+        footer{
+            position: relative;
+            background-color: rgb(31, 30, 30);
+            top: 1.8rem;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: gray;
+        }
+        @media (max-width: 576px){
+            .small_pic{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .modal-body img{
+                height: 15rem;
+                width: 100%;
+            }  
+            .modal-content{
+                height: 15rem;
+                width: 100%;
+            } 
+            .footer{
+                font-size: 1.2rem;
+                top: 0.5rem
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-3">
+                        <img src="<%= pfp %>" width='250px' class="img">  
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <h1><%= name %></h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <h3><%= bio %></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <% for(let i=0; i< images.length;i++){ %>
+                <% if(i>2){ %>
+                <div class="col-md-4 text-center mt-4">
+                    <img src= '<%= images[i] %>' width = '400px' class="small_pic"
+                    data-bs-toggle="modal" data-bs-target="#myModal">
+                </div>  
+                <% }else{ %>
+                    <div class="col-md-4 text-center mt-md-0 mt-4">
+                        <img src= '<%= images[i] %>' width = '400px' class="small_pic"
+                        data-bs-toggle="modal" data-bs-target="#myModal" >
+                    </div> 
+                    <% } %>
+            <% } %>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered justify-content-center">
+          <div class="modal-content">
+            <div class="modal-body">
+              <img src="" class="large_pic">
+            </div>
+          </div>
+        </div>
+      </div>
+    <footer>
+        Made by <a href="https://github.com/gigabite-pro/Nibble-Link-Shortner" target="_blank">Vaibhav</a>
+      </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+    $('.small_pic').click(
+        function(event){
+        event.preventDefault();
+        $('.large_pic').attr('src', $(this).attr('src'));
+        $('.modal').modal('show')
+            }
+        )
+    }
+);
+</script>
+</html>

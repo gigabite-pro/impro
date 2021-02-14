@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <title>Trial</title>
+    <style>
+      body{
+        background-color: rgb(31, 30, 30);
+        font-family: 'Lexend Deca', sans-serif;
+      }
+      .container{
+        margin-top: 10rem;
+      }
+      h1{
+        color: white;
+        font-weight: bold;
+        font-size: 4rem;
+      }
+      .uploadbtn{
+        width: 7rem;
+      }
+      .form-label{
+        color: white;
+        font-size: 5rem;
+        font-weight: 400;
+      }
+      h2{
+        color: white;
+        font-weight: 700;
+      }
+      h4{
+        color: white;
+      }
+      footer{
+            position: absolute;
+            bottom: 2rem;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: 'Lexend Deca', sans-serif;
+            font-size: 1.5rem;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-12 text-center">
+        <h1>impro</h1>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <%- include('./partials/messages') %>
+        <form action="/profile" method="POST" enctype="multipart/form-data" class="form">
+          <div class="mb-1 text-center">
+              <h2 class="mb-3">Upload Your Work</h2>
+              <h4>Max. 5 files</h4>
+            <input type="file" id="photo" name="files" multiple class="form-control mb-3">
+          </div>
+          <div class="button text-center">
+            <button type="submit" class="uploadbtn btn-light btn">Upload</button>
+          </div> 
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="loading" style="display: none;">Please wait while the images are being processed.</h2> 
+      </div>
+    </div>
+  </div>
+  <footer>
+    Made by <a href="https://github.com/gigabite-pro/Nibble-Link-Shortner" target="_blank">Vaibhav</a>
+  </footer>
+</body>
+<!-- Bootstap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script>
+    var btn = document.querySelector('.uploadbtn')
+    btn.addEventListener('click', ()=>{
+      var form = document.querySelector('.form')
+      var load = document.querySelector('.loading')
+      form.style.display = 'none'
+      load.style.display = 'block'
+    });
+  </script>
+</html>
