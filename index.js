@@ -33,7 +33,7 @@ var upload = multer()
 app.post('/upload-info', upload.array('files'), (req, res) => {
     var status;
     errors = []
-    let pfp = ''
+    var pfp;
     var name = req.body.name
     var bio = req.body.bio
     var backlink = req.body.backlink
@@ -45,43 +45,50 @@ app.post('/upload-info', upload.array('files'), (req, res) => {
                 res.render('index', {errors,name,bio})
             }else{
                 var fileinfo = req.files
-                for(let i=0; i < fileinfo.length; i++){
-                const buffer = Buffer.from(fileinfo[i].buffer);
-                const base64String = buffer.toString('base64');
 
-                const config = {
-                    method: 'post',
-                    url: 'https://api.imgur.com/3/image',
-                    headers: { 
-                        'Authorization': `Client-ID ${process.env.Client_ID}`, 
-                        Accept: 'application/json',
-                    },
-                    data : {'image':base64String},
-                    mimeType: 'multipart/form-data',
-                };
-
-                axios(config)
-                .then(function (response) {
-                    pfp = response.data.data.link;
-                    console.log(pfp)
-                })
-                .catch(function (error) {
-                    status = error.response.status
-                    console.log(status);
-                });
-            }
-            errors.length = 0
-            setTimeout(() => {
-                if(status == 400){
-                    res.status(400).send('Some error occurred')
+                if(!name || !bio || !backlink || fileinfo.length == 0){
+                    errors.push({msg: 'Please fill in all the fields'})
+                    res.render('index', {errors})
                 }else{
-                    localStorage.setItem('name', name);
-                    localStorage.setItem('bio', bio);
-                    localStorage.setItem('pfp', pfp);
-                    localStorage.setItem('backlink', backlink);
-                    res.render('work')
+                    for(let i=0; i < fileinfo.length; i++){
+                        const buffer = Buffer.from(fileinfo[i].buffer);
+                        const base64String = buffer.toString('base64');
+        
+                        const config = {
+                            method: 'post',
+                            url: 'https://api.imgur.com/3/image',
+                            headers: { 
+                                'Authorization': `Client-ID ${process.env.Client_ID}`, 
+                                Accept: 'application/json',
+                            },
+                            data : {'image':base64String},
+                            mimeType: 'multipart/form-data',
+                        };
+        
+                        axios(config)
+                        .then(function (response) {
+                            pfp = response.data.data.link;
+                            console.log(pfp)
+                        })
+                        .catch(function (error) {
+                            status = error.response.status
+                            console.log(status);
+                        });
+                    }
+                    setTimeout(() => {
+                        if(status == 400){
+                            res.status(400).send('Some error occurred')
+                        }else{
+                            localStorage.setItem('name', name);
+                            localStorage.setItem('bio', bio);
+                            localStorage.setItem('pfp', pfp);
+                            localStorage.setItem('backlink', backlink);
+                            res.render('work')
+                        }
+                    }, fileinfo.length*5000);
                 }
-            }, fileinfo.length*5000);
+
+                
         }
     })     
     .catch((err)=> console.log(err)) 
