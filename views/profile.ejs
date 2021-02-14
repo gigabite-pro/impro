@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <title>Profile | <%= name %></title>
+    <title>impro | <%= name %></title>
     <style>
         body{
             background-color: rgb(31, 30, 30);
@@ -58,9 +58,12 @@
             color: gray;
         }
         @media (max-width: 576px){
+            .img{
+                width: 10rem;
+            }
             .small_pic{
-                padding-left: 10px;
-                padding-right: 10px;
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
             .modal-body img{
                 height: 15rem;
@@ -70,9 +73,10 @@
                 height: 15rem;
                 width: 100%;
             } 
-            .footer{
+            footer{
                 font-size: 1.2rem;
-                top: 0.5rem
+                top: 0.5rem;
+                overflow: hidden;
             }
         }
     </style>
@@ -102,27 +106,27 @@
             <% for(let i=0; i< images.length;i++){ %>
                 <% if(i>2){ %>
                 <div class="col-md-4 text-center mt-4">
-                    <img src= '<%= images[i] %>' width = '400px' class="small_pic"
+                    <img src= '<%= images[i] %>' width = '400px' class="small_pic img-fluid"
                     data-bs-toggle="modal" data-bs-target="#myModal">
                 </div>  
                 <% }else{ %>
                     <div class="col-md-4 text-center mt-md-0 mt-4">
-                        <img src= '<%= images[i] %>' width = '400px' class="small_pic"
+                        <img src= '<%= images[i] %>' width = '400px' class="small_pic img-fluid"
                         data-bs-toggle="modal" data-bs-target="#myModal" >
                     </div> 
                     <% } %>
             <% } %>
         </div>
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered justify-content-center">
-          <div class="modal-content">
-            <div class="modal-body">
-              <img src="" class="large_pic">
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered justify-content-center">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <img src="" class="large_pic">
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+    </div>
     <footer>
         Made by <a href="https://github.com/gigabite-pro/Nibble-Link-Shortner" target="_blank">Vaibhav</a>
       </footer>
