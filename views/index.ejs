@@ -15,12 +15,12 @@
       body{
         background-color: rgb(31, 30, 30);
         font-family: 'Lexend Deca', sans-serif;
+        color: white;
       }
       .container{
-        margin-top: 7rem;
+        margin-top: 2rem;
       }
       h1{
-        color: white;
         font-weight: bold;
         font-size: 4rem;
       }
@@ -30,18 +30,11 @@
       .editbtn{
         margin-left: 0.5rem;
       }
-      .form-label{
-        color: white;
-      }
-      h2{
-        color: white;
-      }
       footer{
             position: relative;
             top: 3rem;
             width: 100%;
             text-align: center;
-            color: white;
             font-family: 'Lexend Deca', sans-serif;
             font-size: 1.5rem;
         }
@@ -51,6 +44,9 @@
         }
         footer a:hover{
             color: gray;
+        }
+        a:hover{
+          color: white;
         }
         @media (max-width: 576px){
           .container{
@@ -64,6 +60,11 @@
     <div class="row justify-content-center mb-4">
       <div class="col-12 text-center">
         <a href="/"><h1>Impro</h1></a>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h5>Impro provides artists with a shareable link to showcase their creativity.</h5>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -95,7 +96,10 @@
             placeholder="Backlink (impro.gq/{backlink})"
             value="<%= typeof backlink != 'undefined' ? backlink : '' %>"
             >
-            <label for="backlink" class="form-label mb-3">Backlink cannot contain ' / '</label>
+            <label for="backlink" class="form-label mb-2">Backlink is the word after ' impro.gq/ ' where you wish to host your profile.
+              <br><br>
+              Backlink cannot contain ' / '
+            </label>
 
           <input type="password" 
           name="password" 
