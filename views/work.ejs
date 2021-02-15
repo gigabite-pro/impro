@@ -40,8 +40,8 @@
         color: white;
       }
       footer{
-            position: absolute;
-            bottom: 2rem;
+            position: relative;
+            top: 3rem;  
             width: 100%;
             text-align: center;
             color: white;
@@ -52,8 +52,13 @@
             text-decoration: none;
             color: white;
         }
-        a:hover{
+        footer a:hover{
             color: gray;
+        }
+        @media (max-width: 576px){
+          .container{
+            margin-top: 2rem;
+          }
         }
     </style>
 </head>
@@ -61,7 +66,7 @@
   <div class="container">
     <div class="row justify-content-center mb-4">
       <div class="col-12 text-center">
-        <h1>Impro</h1>
+        <a href="/"><h1>Impro</h1></a>
       </div>
     </div>
     <div class="row justify-content-center">

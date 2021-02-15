@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://i.imgur.com/W0fE4FL.png" type="image/x-icon">
-    <title>Impro</title>
+    <title>Impro | Login</title>
     <style>
       body{
         background-color: rgb(31, 30, 30);
@@ -27,13 +27,10 @@
       .uploadbtn{
         width: 7rem;
       }
-      .editbtn{
-        margin-left: 0.5rem;
-      }
-      .form-label{
+      h2{
         color: white;
       }
-      h2{
+      p{
         color: white;
       }
       footer{
@@ -69,57 +66,31 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <%- include('./partials/messages') %>
-        <form action="/upload-info" method="POST" enctype="multipart/form-data" class="form hide">
-
+        <form action="/login" method="POST" class="form hide">
           <input type="text" 
             class="form-control mb-3" 
-            id="name" 
-            name="name" 
-            placeholder="Full Name" 
-            value="<%= typeof name != 'undefined' ? name : '' %>"
-            >
-
-          <input type="text" 
-            rows="2" 
-            class="form-control mb-3" 
-            id="bio" 
-            placeholder="Bio" 
-            name="bio"
-            value = "<%= typeof bio != 'undefined' ? bio : '' %>"
-            ></input>
-
-          <input type="text" 
-            class="form-control mb-2" 
             id="backlink" 
             name="backlink" 
             placeholder="Backlink (impro.gq/{backlink})"
-            value="<%= typeof backlink != 'undefined' ? backlink : '' %>"
             >
-            <label for="backlink" class="form-label mb-3">Backlink cannot contain ' / '</label>
 
           <input type="password" 
           name="password" 
           id="password"
-          class="form-control mb-2"
-          placeholder="Create a password"
+          class="form-control mb-3"
+          placeholder="Password"
           >
 
-          <div class="mb-1">
-            <label for="pfp" class="form-label">Profile Picture (Make sure the image is squared)</label>
-            <input type="file" id='pfp' name='files' class="form-control mb-3">
-          </div>
-          <div class="button">
-            <button type="submit" class="uploadbtn btn-light btn">Upload</button>
-            <a href="/login">
-              <button type="button" class="editbtn btn btn-light">Edit Profile</button>
-            </a>
+          <p>Forgot Password? Contact the creator :)</p>
+          <div class="button text-center">
+            <button type="submit" class="uploadbtn btn-light btn">Login</button>
           </div> 
         </form>
       </div>
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="loading" style="display: none;">Please wait while the images are being processed.</h2> 
+        <h2 class="loading" style="display: none;">Redirecting...</h2> 
       </div>
     </div>
   </div>
