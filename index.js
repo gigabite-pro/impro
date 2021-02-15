@@ -119,7 +119,7 @@ app.post('/upload-info', upload.array('files'), (req, res) => {
                     errors.length = 0;
                     setTimeout(() => {
                         if(status == 400){
-                            res.status(400).send('Some error occurred')
+                            res.redirect(400,'/error')
                         }else{
                             localStorage.setItem('name', name);
                             localStorage.setItem('bio', bio);
@@ -185,7 +185,7 @@ app.post('/profile', upload.array('files'), (req,res)=>{
         if(fileinfo.length <= 3){
             setTimeout(() => {
                 if(image_link.length != fileinfo.length){
-                    res.status(400).send('Some error occurred')
+                    res.redirect(400,'/error')
                 }else{
                     newUser = new User({
                         'name': name,
@@ -215,7 +215,7 @@ app.post('/profile', upload.array('files'), (req,res)=>{
         }else{
             setTimeout(() => {
                 if(image_link.length != fileinfo.length){
-                    res.status(400).send('Some error occurred')
+                    res.redirect(400,'/error')
                 }else{
                     newUser = new User({
                         'name': name,
@@ -317,7 +317,7 @@ app.post('/edit-info', upload.array('files'), (req,res)=>{
                     errors.length = 0;
                     setTimeout(() => {
                         if(status == 400){
-                            res.status(400).send('Some error occurred')
+                            res.redirect(400,'/error')
                         }else{
                             if(password){
                                 //Hash Password
@@ -468,7 +468,7 @@ app.post('/update-images', upload.array('files'), (req,res)=>{
         if(fileinfo.length <= 3){
             setTimeout(() => {
                 if(image_link.length != fileinfo.length){
-                    res.status(400).send('Some error occurred')
+                    res.redirect(400,'/error')
                 }else{
                     User.updateOne({backlink},{
                         $set : {
@@ -485,7 +485,7 @@ app.post('/update-images', upload.array('files'), (req,res)=>{
         }else{
             setTimeout(() => {
                 if(image_link.length != fileinfo.length){
-                    res.status(400).send('Some error occurred')
+                    res.redirect(400,'/error')
                 }else{   
                     User.updateOne({backlink},{
                         $set : {
@@ -501,6 +501,11 @@ app.post('/update-images', upload.array('files'), (req,res)=>{
             }, fileinfo.length*1500);
         }   
     }   
+})
+
+//Error Page
+app.get('/error', (req,res)=>{
+    res.render('error')
 })
 
 //Login Page
@@ -542,6 +547,5 @@ app.get('/:backlink', async(req,res)=>{
         'images': user.work
     })
 })
-
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`))
